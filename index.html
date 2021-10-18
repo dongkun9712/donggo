@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko" class="hydrated"><head>
+  <meta charset="UTF-8"><style data-styles="">ion-icon{visibility:hidden}.hydrated{visibility:inherit}</style>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>donguny</title>
+  <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://unpkg.com/ionicons@4.5.9-1/dist/ionicons.js"></script><script type="module" src="https://unpkg.com/ionicons@4.5.9-1/dist/ionicons/ionicons.esm.js"></script><script nomodule="" src="https://unpkg.com/ionicons@4.5.9-1/dist/ionicons/ionicons.js"></script>
+  </head><body><a href="#" class="topScrollButton"><ion-icon name="arrow-round-up" role="img" class="md hydrated" aria-label="arrow round up"></ion-icon></a>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    body {
+            background-color: lightyellow;
+            transition: all 1s;
+            height: 2000px;
+            margin: 0;
+        }
+    .bgcolor--blue {
+            background-color: lightblue;
+        }
+    .bgcolor--gray {
+            background-color: lightgray;
+        }
+    .btns{
+      position: fixed;
+      top: 60px;
+      width: 100vw;
+      margin: auto;
+      padding-top: 30px;
+      padding-bottom: 30px;
+      text-align: center;
+      background-color: transparent;
+        }
+    button{
+      border: none;
+      border-radius: 5px;
+      color: brown;
+      width: 140px;
+      height: 50px;
+      background-color: bisque;
+      transition: 0.3s;
+      margin: 3px;
+    }
+    button:hover{
+      color: white;
+      background-color: coral;
+    }
+      /*.bg--img{
+          background: url('bgimg.jpeg');
+        }*/
+    .bg__img {
+          margin: 0;
+          position: absolute;
+          width: 100vw;
+          height: 180vh;
+          background: url('bgimg.jpeg');
+          transition: all 1s;
+          opacity: 0;
+          background-repeat: no-repeat;
+          background-size: contain;
+    }
+    .bg_img--show {
+          opacity: 1;
+        }
+    .btns.bgshow {
+      background-color:tomato;
+    }
+    /* 스크롤버튼 */
+    a.topScrollButton {
+      position: fixed;
+      right: 30px; 
+      bottom: 30px; 
+      border-radius: 0px; 
+      color: #ffffff;
+      text-align: center; 
+      width: 50px; 
+      height: 50px; 
+      font-size: 50px; 
+      font-weight: bold; 
+      /*background-color: rgba(50,50,50,0.5);*/ 
+      background-color:blue;
+      opacity:0.5;  
+      filter:alpha(opacity=50); 
+      z-index: 999;
+      display: none;
+    }
+    
+      a.topScrollButton:hover{
+        background-color:aqua;
+      }
+
+  </style>
+
+
+
+  <div class="bg__img"></div>
+      <div class="btns">
+        <button class="btn_toggle">배경색상변경 토글button</button>
+        <button class="btn--reset">배경색상 reset</button>
+        <button class="btn--gray">배경색상변경 grey</button>
+        <button class="btn--bgimg">배경 image</button>
+      </div>
+  <script>
+  
+    const btnToggle = document.querySelector('.btn_toggle');
+    // addEventListener('이벤트', 실행함수);
+    btnToggle.addEventListener('click', function () {
+      document.body.classList.toggle('bgcolor--blue');
+      //document.body.classList.remove('bg--img');
+      // console.log('버튼클릭');
+    });
+    const btnReset = document.querySelector('.btn--reset');
+    btnReset.addEventListener('click', function () {
+      bgContainer.classList.remove('bg_img--show');
+      document.body.classList.remove('bgcolor--blue','bgcolor--gray','bg--img');
+    });
+
+    const btnBgGray = document.querySelector('.btn--gray');
+    btnBgGray.addEventListener('click', function () {
+      //document.body.classList.remove('bg--img');
+      bgContainer.classList.remove('bg_img--show');
+      document.body.classList.add('bgcolor--gray');
+    });
+
+    const bgContainer = document.querySelector('.bg__img')
+    const btnBgImg = document.querySelector('.btn--bgimg');
+    btnBgImg.addEventListener('click', function () {
+      //document.body.classlist.add('bg--img')
+      bgContainer.classList.add('bg_img--show');
+    });
+    const navContainer = document.querySelector('.btns')
+    document.addEventListener('scroll', function () {
+      if (window.scrollY > 100) {
+        navContainer.classList.add('bgshow');
+      }else {
+        navContainer.classList.remove('bgshow');
+      }
+    });
+    $( document ).ready( function() {
+      $( window ).scroll( function() { 
+        if ( $( this ).scrollTop() > 100 ) { 
+          $( '.topScrollButton' ).fadeIn(); } 
+          else { $( '.topScrollButton' ).fadeOut(); } } ); 
+          $( '.topScrollButton' ).click( function() { 
+            $( 'html, body' ).animate( { scrollTop : 0 }, 500 ); 
+            return false; } ); } );
+
+
+  </script>
+
+
+
+
+</body></html>
